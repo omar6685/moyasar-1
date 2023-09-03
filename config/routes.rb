@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'static_public/home'
-  get 'static_public/user_dash'
-  get 'static_public/trems'
+  root 'static_public#home'
+  devise_for :users
+  get 'user_dash', to: 'static_public#user_dash'
+  get 'trems', to: 'static_public#trems'
   resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
