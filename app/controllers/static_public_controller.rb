@@ -1,4 +1,5 @@
 class StaticPublicController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:home, :trems]
   def home
   end
 
