@@ -123,6 +123,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.19.0)
+    moyasar (0.9.0)
     msgpack (1.7.2)
     net-imap (0.3.7)
       date
@@ -238,6 +239,7 @@ DEPENDENCIES
   devise (~> 4.9)
   jbuilder
   jsbundling-rails
+  moyasar
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.7, >= 7.0.7.2)
