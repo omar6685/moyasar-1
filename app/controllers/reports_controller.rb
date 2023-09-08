@@ -12,9 +12,13 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    @report = Report.new
+    if current_user && current_user.subscription_status == "paid"
+      @report = Report.new
+    else
+      flash[:alert] = "You must have a paid subscription to create reports."
+      redirect_to reports_url
+    end
   end
-
   # GET /reports/1/edit
   def edit
   end
