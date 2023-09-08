@@ -1,0 +1,12 @@
+
+<%= current_user.email %>
+<%= current_user.subscription_status %>
+<%= current_user.current_period_end %>
+
+<% if @status.present? %>
+    <p>Status: <%= @status %></p>
+    <p>Status: <%= @payment_id %></p>
+    <p>email: <%= @payment_email %></p>
+    
+<% end %>
+

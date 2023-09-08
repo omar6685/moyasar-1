@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+  <!-- Moyasar Styles -->
+  <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.10.0/moyasar.css" />
 
+  <!-- Moyasar Scripts -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
+    <script src="https://cdn.moyasar.com/mpf/1.10.0/moyasar.js"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
@@ -15,6 +21,8 @@
     <% if current_user %>
       <%= link_to current_user.email, edit_user_registration_path %>  
       <%= link_to " Log out ", destroy_user_session_path, method: :delete %> 
+      <%=  current_user.subscription_status %>  
+      <%=  current_user.current_period_end %>  
     <% else %>
       <%= link_to " Log in ", new_user_session_path %> 
       <%= link_to " sign up ", new_user_registration_path %> 

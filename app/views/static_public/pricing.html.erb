@@ -1,0 +1,13 @@
+<h1> pricing</h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <div class="mysr-form"></div>
+
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+    
+  <% end %>
+</div>

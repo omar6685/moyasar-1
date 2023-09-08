@@ -14,4 +14,25 @@
     <%= product.price %>
   </p>
 
+<%= current_user.email %>
 </div>
+
+<div class="mysr-form"></div>
+
+<script>
+var productPrice = <%= product.price.to_f %>;
+
+Moyasar.init({
+  element: '.mysr-form',
+  amount: productPrice, // Replace with your desired amount
+  currency: 'SAR',
+  description: '<%= current_user.email %>',
+  publishable_api_key: 'pk_test_ETufb2pH2T2ZxYWGskkgGYEFiYNSej5ZUViQuMtk', // Replace with your actual API key
+  callback_url: '<%= payment_status_url(payment_status: "approved") %>',
+  supported_networks: ['mada'],
+  methods: ['creditcard'],
+  metadata: {
+    email: '<%= current_user.email %>'
+  }
+});
+</script>

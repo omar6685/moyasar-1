@@ -8,4 +8,9 @@ class StaticPublicController < ApplicationController
 
   def trems
   end
+
+
+  def pricing
+    @products = Product.all
+  end
 end
