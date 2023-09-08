@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reports
   root 'static_public#home'
   devise_for :users
   
