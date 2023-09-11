@@ -19,6 +19,9 @@ class ReportsController < ApplicationController
   def new
     if current_user && current_user.subscription_status == "paid"
       @report = Report.new
+      @users = User.all # Load all users for admin to select from
+      @users = current_user.admin? ? User.all : [current_user] # Load all users for admin, current user for regular users
+
     else
       flash[:alert] = "You must have a paid subscription to create reports."
       redirect_to reports_url
@@ -26,11 +29,21 @@ class ReportsController < ApplicationController
   end
   # GET /reports/1/edit
   def edit
+    @users = current_user.admin? ? User.all : [current_user] # Load all users for admin, current user for regular users
   end
 
   # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
+
+
+    if current_user.admin? && params[:report][:user_id].present?
+      # Admins can create reports for other users
+      @report.user_id = params[:report][:user_id]
+    else
+      # Regular users can only create reports for themselves
+      @report.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @report.save
