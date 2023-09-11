@@ -1,11 +1,16 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[ show edit update destroy ]
-
+  before_action :set_report, only: %i[show edit update destroy]
+  
   # GET /reports or /reports.json
   def index
-    @reports = Report.all
+    if current_user && current_user.admin?
+      @reports = Report.all
+    elsif current_user
+      @reports = current_user.reports
+    else
+      @reports = []
+    end
   end
-
   # GET /reports/1 or /reports/1.json
   def show
   end
@@ -63,12 +68,17 @@ class ReportsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @report = Report.find(params[:id])
+  def set_report
+    @report = Report.find(params[:id])
+    
+    # Check if the user has permission to access this report
+    unless current_user&.admin? || @report.user == current_user
+      flash[:alert] = "You don't have permission to access this report."
+      redirect_to reports_url
     end
-
+  end
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:name, :number)
+      params.require(:report).permit(:name, :number, :user_id)
     end
 end

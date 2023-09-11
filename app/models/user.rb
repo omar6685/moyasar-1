@@ -6,9 +6,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :assign_default_role
+  has_many :reports
 
   def assign_default_role
    self.add_role(:customer) if self.roles.blank?
   end
        
+  def admin?
+    has_role?(:admin)
+  end
+  
 end

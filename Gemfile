@@ -77,3 +77,4 @@ end
 gem "devise", "~> 4.9"
 gem 'moyasar'
 gem "rolify"
+gem 'cancancan'
