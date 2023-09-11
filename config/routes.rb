@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
+  resources :users
+
   resources :payments
   get 'user_dash', to: 'static_public#user_dash'
   get 'trems', to: 'static_public#trems'
