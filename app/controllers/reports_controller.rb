@@ -13,6 +13,13 @@ class ReportsController < ApplicationController
   end
   # GET /reports/1 or /reports/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name", template: "reports/show", formats: [:html]   # Excluding ".pdf" extension.
+
+      end
+    end
   end
 
   # GET /reports/new

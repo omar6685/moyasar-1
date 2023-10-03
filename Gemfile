@@ -78,3 +78,5 @@ gem "devise", "~> 4.9"
 gem 'moyasar'
 gem "rolify"
 gem 'cancancan'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
